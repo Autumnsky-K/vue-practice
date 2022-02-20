@@ -9,9 +9,10 @@
     </head>
     <body>
         <div id="root">
-            <word-relay></word-relay>
-            <word-relay></word-relay>
-            <word-relay></word-relay>
+            <!-- Vue의 HTML 쪽에서는 start-word처럼 kebab-Case로 하면 자바스크립트에서는 camelCase로 받을 수 있다. -->
+            <word-relay start-word="제로초"></word-relay>
+            <word-relay start-word="초밥"></word-relay>
+            <word-relay start-word="바보"></word-relay>
         </div>
     </body>
     <script>
@@ -30,9 +31,11 @@
                     <div>{{result}}</div>
                 </div>
             `,
+            // HTML의 start-word를 startWord로 받아서 사용한다.
+            props: ['startWord'],
             data() {
                 return {
-                    word: '제로초',
+                    word: this.startWord,
                     result: '',
                     value: '',
                 };
