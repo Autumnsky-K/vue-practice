@@ -9,21 +9,33 @@
     </head>
     <body>
         <div id="root">
-            <div>{{word}}</div>
-            <form v-on:submit="onSubmitForm">
-                <input type="text" ref="answer" v-model="value">
-                <button type="submit">입력!</button>
-            </form>
-            <div>{{result}}</div>
+            <word-relay></word-relay>
+            <word-relay></word-relay>
+            <word-relay></word-relay>
         </div>
     </body>
     <script>
-        const app = new Vue({
-            el: '#root',
-            data: {
-                word: '제로초',
-                result: '',
-                value: '',
+        /*
+            컴포넌트는 Vue 인스턴스를 생성하는 부분보단 위에 있어야 한다.
+            <div id="root"></div> 보다는 아래 있어도 된다.
+        */
+        Vue.component('word-relay', {   // 전역 컴포넌트
+            template: `
+                <div>
+                    <div>{{word}}</div>
+                        <form v-on:submit="onSubmitForm">
+                            <input type="text" ref="answer" v-model="value">
+                            <button type="submit">입력!</button>
+                        </form>
+                    <div>{{result}}</div>
+                </div>
+            `,
+            data() {
+                return {
+                    word: '제로초',
+                    result: '',
+                    value: '',
+                };
             },
             methods: {
                 onSubmitForm(e) {
@@ -39,7 +51,12 @@
                         this.$refs.answer.focus();
                     }
                 },
-            },
+            }
+        })
+    </script>
+    <script>
+        const app = new Vue({
+            el: '#root',
         });
     </script>
 </html>
