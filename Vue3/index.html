@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Vue Mastery</title>
+        <!-- Import Styles -->
+        <link rel="stylesheet" href="./assets/styles.css"/>
+        <!-- Import Vue.js -->
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- {{}} 를 mustache 표현식이라 부른다 -->
+            <h1>{{ product }}</h1>
+            <p>{{ description }}</p>
+        </div>
+
+        <!-- Import JS -->
+        <script src="./main.js"></script>
+
+        <!-- Mount App -->
+        <script>
+            const mountedApp = app.mount('#app')
+        </script>
+    </body>
+</html>
