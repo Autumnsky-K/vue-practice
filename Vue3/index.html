@@ -20,7 +20,9 @@
     <div class="product-display">
       <div class="product-container">
         <div class="product-image">
-          <img v-bind:src="image">
+          <img v-bind:src="image"
+          :class="{ 'out-of-stock-img': !inStock }">
+          <!-- dash(-) 기호가 있는 것은 ''를 넣어서 표현 -->
         </div>
         <div class="product-info">
           <h1>{{ product }}</h1>
@@ -30,10 +32,20 @@
             <!-- v-for은 for loop처럼 작동한다. -->
             <li v-for="detail in details">{{ detail }}</li>
           </ul>
-          <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">{{ variant.color }}</div>
+          <div v-for="variant in variants"
+            :key="variant.id"
+            @mouseover="updateImage(variant.image)"
+            class="color-circle"
+            :style="{ backgroundColor: variant.color}">
+          </div>
           <!-- v-on:click은 @click은 축약할 수 있다. -->
-          <button class="button" v-on:click="addToCart"> Add to Cart</button>
-          <button class="button" @click="removeFromCart">Remove from Cart</button>
+          <button
+            class="button"
+            :class="{ disabledButton: !inStock }"
+            :disabled="!inStock"
+            v-on:click="addToCart">
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
