@@ -68,7 +68,7 @@ app.component('product-display', {
     },
     // component의 removeFromCart 버튼이 클릭되면 parent에게 remove-from-cart 이벤트가 작동하도록 통신을 한다.
     removeFromCart() {
-      this.$emit('remove-from-cart');
+      this.$emit('remove-from-cart', this.variants[this.selectedVariant].id);
     },
   },
   computed: {
