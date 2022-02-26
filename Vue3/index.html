@@ -25,16 +25,17 @@
           <!-- dash(-) 기호가 있는 것은 ''를 넣어서 표현 -->
         </div>
         <div class="product-info">
-          <h1>{{ product }}</h1>
+          <h1>{{ title }}</h1>
+          <div>{{ showWhenSale }}</div>
           <p v-if="inStock">In Stock</p>
           <p v-else>Out of Stock</p>
           <ul>
             <!-- v-for은 for loop처럼 작동한다. -->
             <li v-for="detail in details">{{ detail }}</li>
           </ul>
-          <div v-for="variant in variants"
+          <div v-for="(variant, index) in variants"
             :key="variant.id"
-            @mouseover="updateImage(variant.image)"
+            @mouseover="updateVariant(index)"
             class="color-circle"
             :style="{ backgroundColor: variant.color}">
           </div>
