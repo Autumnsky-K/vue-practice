@@ -15,8 +15,12 @@
     <!-- {{}} 를 mustache 표현식이라 부른다 -->
     <div class="nav-bar"></div>
 
-    <div class="cart">Cart({{ cart }})</div>
-    <product-display :premium="premium"></product-display>
+    <div class="cart">Cart({{ cart.length }})</div>
+    <!-- @add-to-cart와 @remove-from-cart를 이용하여 컴포넌트 안에 있는 해당 메서드들이 이벤트가 발생함을 알리면 main.js에 있는 updateCart 또는 removeFromCart가 실행되도록 한다. -->
+    <product-display :premium="premium"
+      @add-to-cart="updateCart" 
+      @remove-from-cart="removeFromCart">
+    </product-display>
   </div>
 
   <!--Import App -->
