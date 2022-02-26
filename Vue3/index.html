@@ -16,41 +16,16 @@
     <div class="nav-bar"></div>
 
     <div class="cart">Cart({{ cart }})</div>
-
-    <div class="product-display">
-      <div class="product-container">
-        <div class="product-image">
-          <img v-bind:src="image"
-          :class="{ 'out-of-stock-img': !inStock }">
-          <!-- dash(-) 기호가 있는 것은 ''를 넣어서 표현 -->
-        </div>
-        <div class="product-info">
-          <h1>{{ title }}</h1>
-          <div>{{ showWhenSale }}</div>
-          <p v-if="inStock">In Stock</p>
-          <p v-else>Out of Stock</p>
-          <ul>
-            <!-- v-for은 for loop처럼 작동한다. -->
-            <li v-for="detail in details">{{ detail }}</li>
-          </ul>
-          <div v-for="(variant, index) in variants"
-            :key="variant.id"
-            @mouseover="updateVariant(index)"
-            class="color-circle"
-            :style="{ backgroundColor: variant.color}">
-          </div>
-          <!-- v-on:click은 @click은 축약할 수 있다. -->
-          <button
-            class="button"
-            :class="{ disabledButton: !inStock }"
-            :disabled="!inStock"
-            v-on:click="addToCart">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
+    <product-display :premium="premium"></product-display>
   </div>
+
+  <!--Import App -->
+  <script src="./main.js"></script>
+
+  <!-- Import Components -->
+  <script src="./components/ProductDisplay.js"></script>
+  <!-- component 안에 또다른 component를 넣는 것은 해당 component를 사용하는 html 파일에서 script로 불러오면 되는 듯? -->
+  <script src="./components/ProductDetails.js"></script>
 
   <!-- Import JS -->
   <script src="./main.js"></script>
