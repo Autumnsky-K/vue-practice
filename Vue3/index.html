@@ -18,8 +18,7 @@
     <div class="cart">Cart({{ cart.length }})</div>
     <!-- @add-to-cart와 @remove-from-cart를 이용하여 컴포넌트 안에 있는 해당 메서드들이 이벤트가 발생함을 알리면 main.js에 있는 updateCart 또는 removeFromCart가 실행되도록 한다. -->
     <product-display :premium="premium"
-      @add-to-cart="updateCart" 
-      @remove-from-cart="removeFromCartById">
+      @add-to-cart="updateCart">
     </product-display>
   </div>
 
@@ -30,6 +29,8 @@
   <script src="./components/ProductDisplay.js"></script>
   <!-- component 안에 또다른 component를 넣는 것은 해당 component를 사용하는 html 파일에서 script로 불러오면 되는 듯? -->
   <script src="./components/ProductDetails.js"></script>
+  <script src="./components/ReviewForm.js"></script>
+  <script src="./components/ReviewList.js"></script>
 
   <!-- Import JS -->
   <script src="./main.js"></script>

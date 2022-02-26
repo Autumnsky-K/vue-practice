@@ -38,14 +38,10 @@ app.component('product-display', {
           v-on:click="addToCart">
           Add to Cart
         </button>
-        <!-- component에서 click시 removeFromCart 메서드가 실행되도록 한다. -->
-        <button
-          class="button"
-          v-on:click="removeFromCart">
-          Remove From Cart
-        </button>
       </div>
     </div>
+    <review-list v-if="reviews.length" :reviews="reviews"></review-list>
+    <review-form @review-submitted="addReview"></review-form>
   </div>`,
   data() {
     return {
@@ -57,6 +53,7 @@ app.component('product-display', {
         { id: 2234, color: 'green', image: './assets/images/socks_green.jpg', quantity: 50 },
         { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg', quantity: 25 },
       ],
+      reviews: []
     }
   },
   methods: {
@@ -66,10 +63,9 @@ app.component('product-display', {
     updateVariant(index) {
       this.selectedVariant = index;
     },
-    // component의 removeFromCart 버튼이 클릭되면 parent에게 remove-from-cart 이벤트가 작동하도록 통신을 한다.
-    removeFromCart() {
-      this.$emit('remove-from-cart', this.variants[this.selectedVariant].id);
-    },
+    addReview(review) {
+      this.reviews.push(review);
+    }
   },
   computed: {
     title() {
